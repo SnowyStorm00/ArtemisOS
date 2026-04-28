@@ -29,6 +29,9 @@ void idt_init() {
     idt_set_descriptor(0, (void*)isr_divide_by_zero, 0x8E);
     idt_set_descriptor(13, (void*)isr_general_protection_fault, 0x8E);
     idt_set_descriptor(14, (void*)isr_page_fault, 0x8E);
+    
+    // Set IRQ handlers (PIC is remapped to 32)
+    idt_set_descriptor(33, (void*)isr_keyboard, 0x8E);
 
     __asm__ volatile ("lidt %0" : : "m" (idtr_ptr));
     __asm__ volatile ("sti"); // Enable interrupts
