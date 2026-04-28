@@ -46,6 +46,9 @@ xorriso -as mkisofs -b limine-bios-cd.bin \
 # 6. Make it bootable
 ./boot/limine-deploy gameos.iso
 
+# 7. Package the release
+zip -q gameos.zip gameos.iso
+
 echo "-------------------------------"
-echo "Build Complete: gameos.iso ready"
+echo "Build Complete: gameos.iso and gameos.zip ready"
 echo "-------------------------------"

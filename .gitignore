@@ -3,3 +3,4 @@
 *.iso
 iso_root/
 build/
+*.zip
