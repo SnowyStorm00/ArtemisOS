@@ -50,10 +50,6 @@ extern "C" void _start(void) {
     idt_init();
     kprintf("IDT Initialized.\n");
 
-    kprintf("Testing Divide By Zero Exception...\n");
-    volatile int x = 0;
-    volatile int y = 10 / x;
-
     if (fb_req.response == NULL || fb_req.response->framebuffer_count < 1) {
         kprintf("Error: Framebuffer not found!\n");
         for (;;) { __asm__("hlt"); }
