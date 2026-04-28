@@ -1,5 +1,4 @@
 #include "limine.h"
-#include "font.h"
 #include "io.h"
 #include "serial.h"
 #include "kprintf.h"
