@@ -27,14 +27,20 @@ __attribute__((interrupt)) void isr_page_fault(struct interrupt_frame* frame, ui
 static int cursor_x = 20;
 
 __attribute__((interrupt)) void isr_keyboard(struct interrupt_frame* frame) {
-    uint8_t scancode = inb(0x60);
-    
-    // Only process key down (scancode < 0x80)
-    if (scancode < 0x80) {
-        kprintf("IRQ1: Keyboard scancode 0x%x\n", scancode);
-        draw_string("KEY", cursor_x, 100, 0x00FFFF);
-        cursor_x += 32;
-        if (cursor_x > 800) cursor_x = 20; // Basic wrap around
+    // Read all available bytes from the keyboard buffer so it doesn't freeze!
+    while (inb(0x64) & 1) {
+        uint8_t scancode = inb(0x60);
+        
+        // Only process key down (scancode < 0x80)
+        if (scancode < 0x80) {
+            // Avoid kprintf here in case of stack alignment issues inside the ISR
+            // Just write directly to serial port for debugging
+            serial_write_string("KEY PRESSED!\n");
+            
+            draw_string("KEY", cursor_x, 100, 0x00FFFF);
+            cursor_x += 32;
+            if (cursor_x > 800) cursor_x = 20; // Basic wrap around
+        }
     }
 
     pic_send_eoi(1);
