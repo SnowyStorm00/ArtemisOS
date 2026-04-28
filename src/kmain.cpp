@@ -64,7 +64,7 @@ extern "C" void _start(void) {
         }
     }
 
-    draw_string(fb, "ARTEMIS OS V0.0.1", 20, 20, 0xFFFFFF);
+    draw_string(fb, "ARTEMIS OS V0.0.2", 20, 20, 0xFFFFFF);
     draw_string(fb, "SYSTEM RENDER TEST", 20, 40, 0x00FF00);
 
     // Grid check
