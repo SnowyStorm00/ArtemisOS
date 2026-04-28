@@ -3,6 +3,7 @@
 #include "pic.h"
 #include "io.h"
 #include "video.h"
+#include "serial.h"
 
 __attribute__((interrupt)) void isr_divide_by_zero(struct interrupt_frame* frame) {
     kprintf("\n*** EXCEPTION: DIVIDE BY ZERO ***\n");
