@@ -21,7 +21,7 @@ static void print_int(int num) {
     }
 }
 
-static void print_hex(unsigned int num) {
+static void print_hex(uint64_t num) {
     if (num == 0) {
         serial_write_char('0');
         return;
@@ -66,7 +66,7 @@ void kprintf(const char* format, ...) {
                     break;
                 }
                 case 'x': {
-                    unsigned int num = va_arg(args, unsigned int);
+                    uint64_t num = va_arg(args, uint64_t);
                     print_hex(num);
                     break;
                 }
