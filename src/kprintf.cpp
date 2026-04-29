@@ -1,5 +1,6 @@
 #include "kprintf.h"
 #include "serial.h"
+#include <stdint.h>
 
 static void print_int(int num) {
     if (num == 0) {
